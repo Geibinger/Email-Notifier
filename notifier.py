@@ -13,12 +13,15 @@ sheet = wb.active
 df = pd.read_excel(excel_file)
 
 # Get today's date
-today = datetime.today().strftime('%Y-%m-%d')
+today = datetime.today()
 
 # Loop through each row in the DataFrame
 for index, row in df.iterrows():
+    # Convert 'Runout-Date' to datetime if it's not already
+    runout_date = pd.to_datetime(row['Runout-Date'])
+
     # Check if the runout date is due
-    if row['Runout-Date'] <= today:
+    if runout_date.date() <= today.date():
         # Create a secure SSL context
         context = ssl.create_default_context()
 
