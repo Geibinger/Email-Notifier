@@ -3,14 +3,14 @@ import smtplib
 import ssl
 from datetime import datetime
 from openpyxl import load_workbook
-from config import username, password, smtp_server, smtp_port  # Import sensitive information
+from config import username, password, smtp_server, smtp_port, excel_file  # Import sensitive information
 
 # Load the Excel file
-wb = load_workbook(filename='Your_File.xlsx')
+wb = load_workbook(filename=excel_file)
 sheet = wb.active
 
 # Read the Excel file into a pandas DataFrame
-df = pd.read_excel('Your_File.xlsx')
+df = pd.read_excel(excel_file)
 
 # Get today's date
 today = datetime.today().strftime('%Y-%m-%d')
